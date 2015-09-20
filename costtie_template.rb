@@ -4,7 +4,9 @@ def git_commit(message)
 end
 
 def bundle_install
-  run "bundle install --path ~/.bundle --binstubs=~/.bundle/bin --jobs=4 --without="
+  Bundler.with_clean_env do
+    run "bundle install --path ~/.bundle --binstubs=~/.bundle/bin --jobs=4 --without="
+  end
 end
 
 remove_file "Gemfile.lock"
