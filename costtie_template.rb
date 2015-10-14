@@ -1,4 +1,9 @@
-def git_commit(message)
+def git_commit(message, with_rubocop: true)
+  if with_rubocop
+    Bundler.with_clean_env do
+      run "bundle exec rubocop -a"
+    end
+  end
   git add: "."
   git commit: "-m '#{message}'"
 end
@@ -11,7 +16,7 @@ end
 
 remove_file "Gemfile.lock"
 bundle_install
-git_commit "rails new"
+git_commit "rails new", with_rubocop: false
 
 # fix mysql2 gem version
 # FIXME: rails 4.2.5 will fix this. https://github.com/rails/rails/pull/21536
@@ -19,19 +24,31 @@ unless options.edge?
   gsub_file "Gemfile", /'mysql2'/, "'mysql2', '< 0.4.0'"
   remove_file "Gemfile.lock"
   bundle_install
-  git_commit "fix mysql2 gem version"
+  git_commit "fix mysql2 gem version", with_rubocop: false
 end
 
 # rubocop
 gem "rubocop"
 bundle_install
-git_commit "add rubocop gem"
+git_commit "add rubocop gem", with_rubocop: false
 
 run "curl -o .rubocop.yml -L https://gist.githubusercontent.com/onk/38bfbd78899d892e0e83/raw/a749af089251f9e4bf3c7184732c38474e215045/.rubocop.yml"
 Bundler.with_clean_env do
   run "bundle exec rubocop -a"
 end
-git_commit "rubocop -a"
+git_commit "rubocop -a", with_rubocop: false
+
+# pre-commit
+gem "pre-commit"
+bundle_install
+git_commit "add pre-commit gem"
+
+Bundler.with_clean_env do
+  run "bundle exec pre-commit install"
+  run "bundle exec pre-commit disable yaml checks common rails"
+  run "bundle exec pre-commit enable yaml checks rubocop"
+end
+git_commit "setup pre-commit"
 
 # add pry
 gem "pry"
