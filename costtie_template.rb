@@ -22,6 +22,17 @@ unless options.edge?
   git_commit "fix mysql2 gem version"
 end
 
+# rubocop
+gem "rubocop"
+bundle_install
+git_commit "add rubocop gem"
+
+run "curl -o .rubocop.yml -L https://gist.githubusercontent.com/onk/38bfbd78899d892e0e83/raw/a749af089251f9e4bf3c7184732c38474e215045/.rubocop.yml"
+Bundler.with_clean_env do
+  run "bundle exec rubocop -a"
+end
+git_commit "rubocop -a"
+
 # add pry
 gem "pry"
 gem "pry-doc"
