@@ -18,15 +18,6 @@ remove_file "Gemfile.lock"
 bundle_install
 git_commit "rails new", with_rubocop: false
 
-# fix mysql2 gem version
-# FIXME: rails 4.2.5 will fix this. https://github.com/rails/rails/pull/21536
-unless options.edge?
-  gsub_file "Gemfile", /'mysql2'/, "'mysql2', '< 0.4.0'"
-  remove_file "Gemfile.lock"
-  bundle_install
-  git_commit "fix mysql2 gem version", with_rubocop: false
-end
-
 # rubocop
 gem "rubocop"
 bundle_install
