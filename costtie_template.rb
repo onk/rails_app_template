@@ -20,10 +20,15 @@ git_commit "rails new", with_rubocop: false
 
 # rubocop
 gem "rubocop"
+gem "onkcop"
 bundle_install
 git_commit "add rubocop gem", with_rubocop: false
 
-run "curl -o .rubocop.yml -L https://gist.githubusercontent.com/onk/38bfbd78899d892e0e83/raw/a749af089251f9e4bf3c7184732c38474e215045/.rubocop.yml"
+create_file ".rubocop.yml", <<YAML
+inherit_gem:
+  onkcop: "config/rubocop.yml"
+YAML
+
 Bundler.with_clean_env do
   run "bundle exec rubocop -a"
 end
