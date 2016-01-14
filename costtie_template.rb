@@ -19,8 +19,10 @@ bundle_install
 git_commit "rails new", with_rubocop: false
 
 # rubocop
-gem "rubocop"
-gem "onkcop"
+gem_group :development do
+  gem "rubocop"
+  gem "onkcop"
+end
 bundle_install
 git_commit "add rubocop gem", with_rubocop: false
 
@@ -35,7 +37,9 @@ end
 git_commit "rubocop -a", with_rubocop: false
 
 # pre-commit
-gem "pre-commit"
+gem_group :development do
+  gem "pre-commit"
+end
 bundle_install
 git_commit "add pre-commit gem"
 
@@ -47,9 +51,11 @@ end
 git_commit "setup pre-commit"
 
 # add pry
-gem "pry"
-gem "pry-doc"
-gem "pry-rails"
+gem_group :development do
+  gem "pry"
+  gem "pry-doc"
+  gem "pry-rails"
+end
 bundle_install
 git_commit "add pry gems"
 
@@ -69,7 +75,9 @@ EOF
 git_commit "add unicorn gem"
 
 # rspec
-gem "rspec-rails"
+gem_group :test do
+  gem "rspec-rails"
+end
 bundle_install
 git_commit "add rspec-rails gem"
 generate "rspec:install"
