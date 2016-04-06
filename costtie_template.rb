@@ -83,6 +83,16 @@ git_commit "add rspec-rails gem"
 generate "rspec:install"
 git_commit "rails g rspec:install"
 
+# guard
+gem_group :test do
+  gem "guard-rspec", group: :development
+end
+bundle_install
+Bundler.with_clean_env do
+  run "bundle exec guard init rspec"
+end
+git_commit "add guard-rspec gem"
+
 # scaffold
 generate :scaffold, "user name birthday:datetime"
 rake "db:drop"
