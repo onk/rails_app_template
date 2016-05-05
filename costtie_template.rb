@@ -29,6 +29,9 @@ git_commit "add rubocop gem", with_rubocop: false
 create_file ".rubocop.yml", <<YAML
 inherit_gem:
   onkcop: "config/rubocop.yml"
+
+AllCops:
+  TargetRubyVersion: 2.3
 YAML
 
 Bundler.with_clean_env do
