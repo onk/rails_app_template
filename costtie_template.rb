@@ -5,7 +5,7 @@ def git_commit(message, with_rubocop: true)
     end
   end
   git add: "."
-  git commit: "-m '#{message}'"
+  git commit: "-n -m '#{message}'"
 end
 
 def bundle_install

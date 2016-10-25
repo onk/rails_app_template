@@ -21,11 +21,11 @@ EOF
 fi
 
 git add Gemfile
-git commit -m "first commit"
+git commit -n -m "first commit"
 
 bundle install --path ~/.bundle --binstubs=~/.bundle/bin --jobs=4 --without=
 git add -A
-git commit -m "add rails and bundle install"
+git commit -n -m "add rails and bundle install"
 
 if [ "${EDGE}" = 0 ]; then
 bundle exec rails new . -f -m ../costtie_template.rb
