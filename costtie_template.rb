@@ -56,6 +56,7 @@ git_commit "setup pre-commit"
 # add pry
 gem_group :development do
   gem "pry"
+  gem "pry-byebug"
   gem "pry-doc"
   gem "pry-rails"
 end
