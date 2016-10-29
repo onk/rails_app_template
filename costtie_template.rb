@@ -80,7 +80,7 @@ git_commit "add unicorn gem"
 
 # rspec
 gem_group :test do
-  gem "rspec-rails"
+  gem "rspec-rails", group: :development
 end
 bundle_install
 git_commit "add rspec-rails gem"
