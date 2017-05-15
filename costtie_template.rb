@@ -90,6 +90,10 @@ Bundler.with_clean_env do
 end
 git_commit "add guard-rspec gem"
 
+# Use database with port
+gsub_file "config/database.yml", /localhost/, "127.0.0.1"
+git_commit "Use database with port"
+
 # scaffold
 generate :scaffold, "user name birthday:datetime"
 rake "db:drop"
