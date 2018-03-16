@@ -28,7 +28,7 @@ git add -A
 git commit -n -m "add rails and bundle install"
 
 if [ "${EDGE}" = 0 ]; then
-bundle exec rails new . -f -m ../costtie_template.rb
+bundle exec rails new . -f -m ../costtie_template.rb --database=mysql --skip-bundle --skip-test --skip-action-cable
 else
-bundle exec rails new . -f -m ../costtie_template.rb --edge
+bundle exec rails new . -f -m ../costtie_template.rb --database=mysql --skip-bundle --skip-test --edge --skip-action-cable
 fi
