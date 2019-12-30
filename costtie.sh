@@ -23,7 +23,8 @@ fi
 git add Gemfile
 git commit -n -m "first commit"
 
-bundle install --path ~/.bundle --binstubs=~/.bundle/bin --jobs=4 --without=
+bundle config set --local path "~/.bundle"
+bundle install --jobs=4 --without=
 git add -A
 git commit -n -m "add rails and bundle install"
 

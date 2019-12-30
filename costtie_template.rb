@@ -10,7 +10,7 @@ end
 
 def bundle_install
   Bundler.with_clean_env do
-    run "bundle install --path ~/.bundle --binstubs=~/.bundle/bin --jobs=4 --without="
+    run "bundle install --jobs=4 --without="
   end
 end
 
