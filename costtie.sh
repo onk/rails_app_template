@@ -32,3 +32,6 @@ bundle exec rails new . -f -m ../costtie_template.rb --database=mysql --skip-bun
 else
 bundle exec rails new . -f -m ../costtie_template.rb --database=mysql --skip-bundle --skip-test --edge --skip-action-cable
 fi
+
+git add -A
+git commit -n -m "rails webpacker:install"
