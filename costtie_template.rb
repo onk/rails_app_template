@@ -56,11 +56,10 @@ end
 bundle_install
 git_commit "add pry gems"
 
-# add slim-rails, stylus
-gem "stylus"
+# add slim-rails
 gem "slim-rails"
 bundle_install
-git_commit "add slim-rails and stylus gem"
+git_commit "add slim-rails gem"
 
 # add unicorn
 gem "unicorn"
