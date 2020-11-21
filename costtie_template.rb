@@ -1,9 +1,4 @@
-def git_commit(message, with_rubocop: true)
-  if with_rubocop
-    Bundler.with_clean_env do
-      run "bundle exec rubocop -a"
-    end
-  end
+def git_commit(message)
   git add: "."
   git commit: "-n -m '#{message}'"
 end
@@ -16,35 +11,7 @@ end
 
 remove_file "Gemfile.lock"
 bundle_install
-git_commit "rails new", with_rubocop: false
-
-# rubocop
-gem_group :development do
-  gem "rubocop"
-  gem "onkcop"
-end
-bundle_install
-git_commit "add rubocop gem", with_rubocop: false
-
-Bundler.with_clean_env do
-  run "bundle exec onkcop init"
-  run "bundle exec rubocop -a"
-end
-git_commit "rubocop -a", with_rubocop: false
-
-# pre-commit
-gem_group :development do
-  gem "pre-commit"
-end
-bundle_install
-git_commit "add pre-commit gem"
-
-Bundler.with_clean_env do
-  run "bundle exec pre-commit install"
-  run "bundle exec pre-commit disable yaml checks common rails"
-  run "bundle exec pre-commit enable yaml checks rubocop"
-end
-git_commit "setup pre-commit"
+git_commit "rails new"
 
 # add pry
 gem_group :development do
