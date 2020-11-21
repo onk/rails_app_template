@@ -4,7 +4,7 @@ def git_commit(message)
 end
 
 def bundle_install
-  Bundler.with_clean_env do
+  Bundler.with_unbundled_env do
     run "bundle install --jobs=4 --without="
   end
 end
