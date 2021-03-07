@@ -31,15 +31,6 @@ gem "slim-rails"
 bundle_install
 git_commit "add slim-rails gem"
 
-# add unicorn
-gem "unicorn"
-bundle_install
-create_file("config/unicorn.rb", <<EOF)
-worker_processes 4
-listen 3000, tcp_nopush: true
-EOF
-git_commit "add unicorn gem"
-
 # rspec
 gem_group :test do
   gem "rspec-rails", group: :development
