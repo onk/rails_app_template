@@ -76,17 +76,6 @@ inject_into_class "app/models/user.rb", "User", <<EOF
 EOF
 git_commit "scaffold article with has_many association"
 
-# redis-objects
-# user has last_logged_in_at
-gem "redis-objects"
-bundle_install
-inject_into_class "app/models/user.rb", "User", <<EOF
-  include Redis::Objects
-  value :last_logged_in_at
-EOF
-git_commit "add redis-objects gem"
-
-
 # scaffold has_many :through models
 #   +--------+
 #   |  user  |
