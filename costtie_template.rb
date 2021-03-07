@@ -113,7 +113,7 @@ EOF
 git_commit "scaffold topics, linkers"
 
 # localize
-inject_into_file "config/application.rb", <<EOF, after: "config.load_defaults 6.0\n"
+inject_into_file "config/application.rb", <<EOF, after: "config.load_defaults 6.1\n"
     config.time_zone = "Tokyo"
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
     config.i18n.default_locale = :ja
