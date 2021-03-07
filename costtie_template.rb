@@ -13,6 +13,9 @@ remove_file "Gemfile.lock"
 bundle_install
 git_commit "rails new"
 
+rails_command "webpacker:install"
+git_commit "rails webpacker:install"
+
 # add pry
 gem_group :development do
   gem "pry"
