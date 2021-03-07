@@ -81,25 +81,26 @@ git_commit "scaffold article with has_many association"
 #   |  user  |
 #   +----+---+
 #        |
-#   +----+----+  +--------+
-#   | article |  | topics |
-#   +-------+-+  +-+------+
-#           |      |
-#         +-+------+-+
-#         |  linker  |
-#         +----------+
+#   +----+----+    +-----+
+#   | article |    | tag |
+#   +-------+-+    +-+---+
+#           |        |
+#        +--+--------+-+
+#        | article_tag |
+#        +-------------+
 #
-generate :scaffold, "topic title"
-generate :scaffold, "linker topic:references article:references"
+generate :scaffold, "tag name"
+generate :scaffold, "article_tag tag:references article:references"
 rake "db:migrate"
 inject_into_class "app/models/article.rb", "Article", <<EOF
-  has_many :linkers
+  has_many :article_tags
+  has_many :tags, through: :article_tags
 EOF
-inject_into_class "app/models/topic.rb", "Topic", <<EOF
-  has_many :linkers
-  has_many :articles, through: :linkers
+inject_into_class "app/models/tag.rb", "Tag", <<EOF
+  has_many :article_tags
+  has_many :articles, through: :article_tags
 EOF
-git_commit "scaffold topics, linkers"
+git_commit "scaffold Tag, ArticleTag"
 
 # localize
 inject_into_file "config/application.rb", <<EOF, after: "config.load_defaults 6.1\n"
