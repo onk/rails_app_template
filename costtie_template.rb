@@ -16,16 +16,6 @@ git_commit "rails new"
 rails_command "webpacker:install"
 git_commit "rails webpacker:install"
 
-# add pry
-gem_group :development do
-  gem "pry"
-  gem "pry-byebug"
-  gem "pry-doc"
-  gem "pry-rails"
-end
-bundle_install
-git_commit "add pry gems"
-
 # add slim-rails
 gem "slim-rails"
 bundle_install
