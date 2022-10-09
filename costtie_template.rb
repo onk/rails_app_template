@@ -16,11 +16,6 @@ git_commit "rails new"
 rails_command "webpacker:install"
 git_commit "rails webpacker:install"
 
-# add slim-rails
-gem "slim-rails"
-bundle_install
-git_commit "add slim-rails gem"
-
 # rspec
 gem_group :test do
   gem "rspec-rails", group: :development
