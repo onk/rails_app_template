@@ -30,10 +30,6 @@ end
 bundle_install
 git_commit "add factory_bot_rails, faker gem"
 
-# Use database with port
-gsub_file "config/database.yml", /localhost/, "127.0.0.1"
-git_commit "Use database with port"
-
 # scaffold
 generate :scaffold, "user name birthday:datetime is_admin:boolean"
 rake "db:drop"
