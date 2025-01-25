@@ -35,11 +35,11 @@ gsub_file "config/database.yml", /localhost/, "127.0.0.1"
 git_commit "Use database with port"
 
 # scaffold
-generate :scaffold, "user name birthday:datetime"
+generate :scaffold, "user name birthday:datetime is_admin:boolean"
 rake "db:drop"
 rake "db:create"
 rake "db:migrate"
-git_commit "rails g scaffold user name birthday:datetime"
+git_commit "rails g scaffold user name birthday:datetime is_admin:boolean"
 
 # scaffold references
 # has_one
