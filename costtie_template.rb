@@ -13,9 +13,6 @@ remove_file "Gemfile.lock"
 bundle_install
 git_commit "rails new"
 
-rails_command "webpacker:install"
-git_commit "rails webpacker:install"
-
 # rspec
 gem_group :test do
   gem "rspec-rails", group: :development
