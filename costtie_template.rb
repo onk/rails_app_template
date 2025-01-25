@@ -25,6 +25,14 @@ git_commit "add rspec-rails gem"
 generate "rspec:install"
 git_commit "rails g rspec:install"
 
+# add factory_bot, faker
+gem_group :test do
+  gem "factory_bot_rails", group: :development
+  gem "faker", group: :development
+end
+bundle_install
+git_commit "add factory_bot_rails, faker gem"
+
 # Use database with port
 gsub_file "config/database.yml", /localhost/, "127.0.0.1"
 git_commit "Use database with port"
